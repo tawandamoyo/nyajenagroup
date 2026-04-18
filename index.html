@@ -116,7 +116,7 @@
       <section class="hero">
         <div class="container">
           <div class="hero-content">
-            <p class="text-uppercase mb-3 fw-semibold">Trusted livestock partner since 2014</p>
+            <p class="text-uppercase mb-3 fw-semibold" style="font-size:0.78rem;letter-spacing:0.15em;opacity:0.82;">Trusted livestock partner since 2014</p>
             <h1>Growing Farms. Feeding Communities.</h1>
             <p>
               High-quality poultry and livestock to power farmer success from smallholders to
@@ -131,6 +131,11 @@
               goats.</span
             >
           </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <i class="bi bi-chevron-down"></i>
         </div>
       </section>
 
@@ -656,6 +661,7 @@
               <li>Biosecurity Statement: Every delivery follows strict disinfection protocols.</li>
               <li><a href="#">Terms &amp; Conditions</a></li>
               <li><a href="#">Privacy Policy</a></li>
+              <li class="footer-credit">Built by <a href="https://moyo.build" target="_blank" rel="noopener noreferrer">Moyo.</a> &mdash; <a href="https://moyo.build" target="_blank" rel="noopener noreferrer">moyo.build</a></li>
             </ul>
           </div>
           <div class="col-md-3 col-lg-4">
@@ -681,13 +687,74 @@
       </div>
     </footer>
 
+    <!-- Floating WhatsApp button -->
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/263770000000"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    </a>
+
+    <!-- Back to top button -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      <i class="bi bi-chevron-up" aria-hidden="true"></i>
+    </button>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
     <script>
+      // Year
       document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+      // Back to top
+      const btt = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        btt.classList.toggle("visible", window.scrollY > 400);
+      }, { passive: true });
+      btt.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      // Scroll-reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            revealObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document
+        .querySelectorAll(".trust-band .col, .product-card, .stat-tile, .section-title, .cta-banner, .content-image, .value-list, blockquote")
+        .forEach((el, i) => {
+          el.classList.add("reveal");
+          if (i % 4 === 1) el.classList.add("reveal-delay-1");
+          if (i % 4 === 2) el.classList.add("reveal-delay-2");
+          if (i % 4 === 3) el.classList.add("reveal-delay-3");
+          revealObserver.observe(el);
+        });
+
+      // Form validation
+      const form = document.querySelector(".needs-validation");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          if (!form.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        });
+      }
     </script>
   </body>
 </html>
