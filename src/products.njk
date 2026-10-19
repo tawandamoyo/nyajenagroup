@@ -4,6 +4,7 @@ pagination:
   data: products
   size: 1
   alias: product
+  addAllPagesToCollections: true
 permalink: "{{ product.url }}"
 eleventyComputed:
   title: "{{ product.title }}"
@@ -12,13 +13,8 @@ eleventyComputed:
   stockGroup: "{{ product.slug if product.orderOptions.length > 1 else '' }}"
   orderBandTitle: "Order {{ product.name | lower }}"
 ---
-<nav class="wrap crumbs" aria-label="Breadcrumb">
-  <ol role="list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/#stock">Our stock</a></li>
-    <li><a href="{{ product.url }}" aria-current="page">{{ product.name }}</a></li>
-  </ol>
-</nav>
+{%- set crumbs = [{ label: "Our stock", url: "/#stock" }, { label: product.name, url: product.url }] %}
+{% include "partials/crumbs.njk" %}
 
 <section class="product-hero">
   <div class="wrap product-hero__inner">

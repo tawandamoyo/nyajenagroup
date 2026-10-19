@@ -52,7 +52,7 @@ such as Netlify Forms or Formspree alongside the WhatsApp step.
 
 - [x] **Phone/WhatsApp number.** +263 77 724 9994, set in `src/_data/site.json`. Confirm the
       WhatsApp account on it is the one the team watches.
-- [ ] **Domain** for `site.url`. It turns on canonical URLs, social previews and `sitemap.xml`.
+- [x] **Domain.** `https://nyajenagroup.co.zw`, set as `site.url` in `src/_data/site.json`.
 - [ ] **Email address** (optional). The footer shows it once set.
 - [ ] **Photos from the farm.** The current images are stock photos, several from outside
       Zimbabwe, and only 600px wide. Most needed: brooder house, a delivery, the team with a

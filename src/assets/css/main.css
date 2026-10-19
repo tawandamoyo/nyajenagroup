@@ -581,10 +581,12 @@ main:focus {
   }
 }
 
-/* --- Hero ---------------------------------------------------------------- */
+/* --- Hero ----------------------------------------------------------------
+   Text on the left; on the right the photo with a shipping tag tied over its
+   corner, carrying the earliest delivery date. Phones stack them, tag last. */
 
 .hero {
-  padding-block: var(--space-l);
+  padding-block: var(--space-l) var(--space-xl);
 }
 
 .hero + .section {
@@ -598,8 +600,8 @@ main:focus {
 }
 
 .hero__title {
-  max-width: 18ch;
-  font-size: clamp(2.1rem, 1.3rem + 3vw, 3.4rem);
+  max-width: 16ch;
+  font-size: clamp(2.1rem, 1.2rem + 3.4vw, 3.6rem);
 }
 
 .hero__lede {
@@ -608,55 +610,179 @@ main:focus {
   max-width: 34rem;
 }
 
-.hero__points {
-  display: grid;
-  gap: 0.5rem;
-  margin-top: var(--space-m);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-
-.hero__points li {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.hero__points svg {
-  color: var(--green);
+.hero__visual {
+  position: relative;
 }
 
 .hero__media img {
   width: 100%;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: var(--radius-l);
 }
 
-@media (min-width: 60em) {
-  .hero__inner {
-    grid-template-columns: 1.1fr 1fr;
-  }
+/* The tag: two cut corners on the left, a punched hole you can see through,
+   and a reinforcing ring round it. The shadow sits on a filter so it follows
+   the cut shape. */
+.tag {
+  --cut: 1.6rem;
+  --hole-x: 1.7rem;
+  --hole-y: 1.75rem;
+  position: relative;
+  z-index: 1;
+  width: min(100% - 1.5rem, 22rem);
+  margin: -3.5rem 0 0 auto;
+  margin-inline-end: 0.75rem;
+  filter: drop-shadow(0 10px 18px rgb(22 38 28 / 0.22)) drop-shadow(0 1px 1px rgb(22 38 28 / 0.2));
 }
 
-@media (max-width: 59.99em) {
+.tag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--white);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+  -webkit-mask: radial-gradient(circle at var(--hole-x) var(--hole-y), transparent 0.42rem, #000 0.47rem);
+  mask: radial-gradient(circle at var(--hole-x) var(--hole-y), transparent 0.42rem, #000 0.47rem);
+}
+
+/* Reinforcing ring round the hole. */
+.tag::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--hole-x) - 0.8rem);
+  top: calc(var(--hole-y) - 0.8rem);
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 0.35rem solid var(--sage);
+  border-radius: 50%;
+}
+
+.tag__band {
+  margin: 0;
+  padding: 0.95rem 1.25rem 0.85rem 3.4rem;
+  border-bottom: 2px solid var(--green);
+  font-size: var(--step--1);
+  font-stretch: 125%;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.tag__date {
+  margin: 0;
+  padding: 1rem 1.25rem 0.25rem 1.6rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+
+.tag__date strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: var(--step-2);
+  font-stretch: var(--wide);
+  font-weight: 750;
+  line-height: 1.15;
+  color: var(--green);
+}
+
+.tag__rows {
+  margin: 0;
+  padding: 0.5rem 1.25rem 1.1rem 1.6rem;
+  font-size: var(--step--1);
+}
+
+.tag__rows div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.75rem;
+  padding-block: 0.45rem;
+  border-bottom: 1px dashed var(--sage-line);
+}
+
+.tag__rows div:last-child {
+  border-bottom: 0;
+}
+
+.tag__rows dt {
+  color: var(--ink-soft);
+}
+
+.tag__rows dd {
+  margin: 0;
+  font-weight: 650;
+}
+
+/* Rubber stamp. Real text, so it is read out as "Since 2014". */
+.tag__stamp {
+  position: absolute;
+  top: -1.6rem;
+  right: -0.6rem;
+  display: grid;
+  place-content: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  margin: 0;
+  border: 3px solid var(--sorghum);
+  border-radius: 50%;
+  outline: 1px solid var(--sorghum);
+  outline-offset: -7px;
+  background: var(--white);
+  transform: rotate(-12deg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-stretch: 125%;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--sorghum);
+}
+
+.tag__stamp span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 60em) {
   .hero {
-    padding-block: var(--space-m);
+    padding-top: var(--space-xl);
   }
   .hero__inner {
-    gap: var(--space-m);
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-xl);
   }
   .hero__media img {
-    aspect-ratio: 2 / 1;
-    max-height: 15rem;
+    aspect-ratio: 5 / 4;
+  }
+  /* Tied over the photo's bottom-left corner, hanging into the gutter. */
+  .hero__visual {
+    padding-bottom: 9rem;
+  }
+  .tag {
+    position: absolute;
+    left: -3rem;
+    bottom: 0;
+    margin: 0;
   }
 }
 
 @media (max-width: 35.99em) {
   .hero__media img {
-    max-height: 10rem;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (forced-colors: active) {
+  .tag::before {
+    border: 2px solid CanvasText;
+  }
+  .tag {
+    border: 2px solid CanvasText;
   }
 }
 
@@ -843,6 +969,7 @@ main:focus {
 
 .step::before {
   content: counter(step);
+  content: counter(step) / "";
   grid-row: span 2;
   font-stretch: 125%;
   font-weight: 800;
@@ -932,6 +1059,7 @@ main:focus {
 
 .quote blockquote p::before {
   content: "“";
+  content: "“" / "";
   display: block;
   height: 2.2rem;
   font-stretch: 125%;
@@ -1000,6 +1128,7 @@ main:focus {
 
 .faq summary::after {
   content: "+";
+  content: "+" / "";
   flex-shrink: 0;
   font-weight: 500;
   font-size: 1.6rem;
@@ -1009,6 +1138,7 @@ main:focus {
 
 .faq details[open] summary::after {
   content: "−";
+  content: "−" / "";
 }
 
 .faq details p {
@@ -1067,11 +1197,15 @@ main:focus {
 
 .crumbs li + li::before {
   content: "/";
+  content: "/" / "";
   margin-right: 0.35rem;
   color: var(--ink-soft);
 }
 
+/* Padding lifts the links to a 24px touch target without changing the line. */
 .crumbs a {
+  display: inline-block;
+  padding-block: 0.2rem;
   color: var(--ink-soft);
 }
 
@@ -1561,18 +1695,32 @@ input[type="checkbox"] {
   color: var(--white);
   border: 2px solid var(--paper);
   box-shadow: 0 6px 18px rgb(22 38 28 / 0.3);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s;
 }
 
 .whatsapp-fab.is-tucked {
   transform: translateY(calc(100% + 2rem));
   opacity: 0;
-  pointer-events: none;
+  visibility: hidden;
+  transition-delay: 0s, 0s, 0.25s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-fab {
+  .whatsapp-fab,
+  .whatsapp-fab.is-tucked {
     transition: none;
+  }
+}
+
+/* Windows high contrast drops backgrounds, so keep the controls outlined. */
+@media (forced-colors: active) {
+  .whatsapp-fab,
+  .skip-link {
+    border: 2px solid ButtonText;
+  }
+  .ticks li::before {
+    background: none;
+    border: 2px solid CanvasText;
   }
 }
 

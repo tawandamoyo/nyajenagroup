@@ -23,6 +23,23 @@ if (navToggle && navList) {
   });
 }
 
+// Earliest delivery dates ------------------------------------------------------
+// The lead time is fixed, so the earliest date is worked out on the visitor's
+// device and is never stale. Lines that only make sense with a date stay hidden
+// until it is filled in. en-GB rather than en-ZW, which pads days to "09".
+
+const prettyDate = (d, long = false) => d.toLocaleDateString("en-GB", long
+  ? { weekday: "long", day: "numeric", month: "long" }
+  : { weekday: "short", day: "numeric", month: "long", year: "numeric" });
+
+document.querySelectorAll("[data-earliest]").forEach((el) => {
+  const date = new Date();
+  date.setDate(date.getDate() + (Number(el.dataset.earliest) || 21));
+  el.textContent = prettyDate(date, el.dataset.format === "long");
+  const line = el.closest("[data-earliest-line]");
+  if (line) line.hidden = false;
+});
+
 // Order form ------------------------------------------------------------------
 // There is no server: the form builds a WhatsApp message and opens it, which is
 // how most customers already talk to the team.
@@ -37,7 +54,6 @@ if (form) {
   const errorSummary = document.getElementById("form-error-summary");
   const stockBoxes = [...form.querySelectorAll('input[name="stock"]')];
   const dateInput = form.querySelector("#date");
-  const leadDays = Number(form.dataset.leadDays) || 21;
 
   const qtyFor = (box) => form.querySelector(`#qty-${box.value}`);
   const variantFor = (box) => form.querySelector(`#variant-${box.value}`);
@@ -105,13 +121,7 @@ if (form) {
 
   // Local calendar dates avoid shifting the date in time zones ahead of UTC.
   const isoDate = (d) => [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
-  const prettyDate = (d) => d.toLocaleDateString("en-ZW", {
-    weekday: "short", day: "numeric", month: "long", year: "numeric",
-  });
-  const earliest = new Date();
-  earliest.setDate(earliest.getDate() + leadDays);
   dateInput.min = isoDate(new Date());
-  form.querySelector("[data-earliest]").textContent = prettyDate(earliest);
 
   const required = [
     { input: form.querySelector("#location"), error: document.getElementById("location-error"), valid: (value) => value.trim() !== "" },

@@ -1,0 +1,28 @@
+{# Expects `crumbs`: [{ label, url }], ending with the current page. Home is added here.
+   The JSON-LD lets search results show the trail instead of the bare URL. #}
+{%- set trail = [{ label: "Home", url: "/" }].concat(crumbs) %}
+<nav class="wrap crumbs" aria-label="Breadcrumb">
+  <ol role="list">
+    {%- for c in trail %}
+    <li><a href="{{ c.url }}"{% if loop.last %} aria-current="page"{% endif %}>{{ c.label }}</a></li>
+    {%- endfor %}
+  </ol>
+</nav>
+{%- if site.url %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {%- for c in trail %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "name": {{ c.label | json | safe }},
+        "item": {{ c.url | absoluteUrl(site.url) | json | safe }}
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+</script>
+{%- endif %}

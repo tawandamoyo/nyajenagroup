@@ -2,14 +2,13 @@
 layout: layouts/base.njk
 permalink: /about.html
 title: About us
-description: Nyajena Agricultural Group was founded by Zimbabwean farmers to give poultry and small livestock producers a reliable supply of healthy stock, practical advice and access to buyers.
+description: Founded by Zimbabwean farmers in Masvingo to give poultry and livestock producers healthy stock, practical advice and access to buyers.
+photo:
+  image: hen.jpg
+  alt: A few young chicks standing together on bare ground.
 ---
-<nav class="wrap crumbs" aria-label="Breadcrumb">
-  <ol role="list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about.html" aria-current="page">About us</a></li>
-  </ol>
-</nav>
+{%- set crumbs = [{ label: "About us", url: "/about.html" }] %}
+{% include "partials/crumbs.njk" %}
 
 <section class="section section--flush-top">
   <div class="wrap split">
@@ -31,7 +30,7 @@ description: Nyajena Agricultural Group was founded by Zimbabwean farmers to giv
       </p>
     </div>
     <figure class="split__media">
-      {% image "hen.jpg", "A speckled hen fanning her feathers beside a group of young chicks.", "(min-width: 60em) 45vw, 100vw", { eager: true } %}
+      {% image "hen.jpg", "A few young chicks standing together on bare ground.", "(min-width: 60em) 45vw, 100vw", { eager: true } %}
     </figure>
   </div>
 </section>

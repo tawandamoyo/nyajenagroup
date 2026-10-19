@@ -1,6 +1,9 @@
 .claude 
 .vscode
 
+README.md
+docs
+
 node_modules/
 _site/
 .cache/

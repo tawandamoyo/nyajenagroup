@@ -4,14 +4,11 @@ permalink: /other-livestock.html
 title: Rabbits and goats
 description: Rabbits and goats for breeding or meat production from Nyajena Agricultural Group in Masvingo. Request current prices and availability.
 eleventyExcludeFromCollections: true
+noindex: true
 ---
 {#- Kept so old links to other-livestock.html#rabbits and #goats still land somewhere useful. #}
-<nav class="wrap crumbs" aria-label="Breadcrumb">
-  <ol role="list">
-    <li><a href="/">Home</a></li>
-    <li><a href="/other-livestock.html" aria-current="page">Rabbits and goats</a></li>
-  </ol>
-</nav>
+{%- set crumbs = [{ label: "Rabbits and goats", url: "/other-livestock.html" }] %}
+{% include "partials/crumbs.njk" %}
 <section class="section section--flush-top">
   <div class="wrap">
     <header class="section__head">

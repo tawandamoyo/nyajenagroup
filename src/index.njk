@@ -1,6 +1,9 @@
 ---
 layout: layouts/base.njk
-description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats from Masvingo, delivered across Zimbabwe with support from our field team.
+description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats from Masvingo, delivered across Zimbabwe.
+photo:
+  image: day-old.jpg
+  alt: Day-old chicks under brooder lamps, spread around feeders and drinkers.
 ---
 <section class="hero">
   <div class="wrap hero__inner">
@@ -16,15 +19,28 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
           <svg aria-hidden="true"><use href="#i-phone" /></svg>Call {{ site.phone.display }}
         </a>
       </div>
-      <ul class="hero__points" role="list">
-        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Health-checked before delivery</li>
-        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Delivered across Zimbabwe</li>
-        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Supplying farmers since {{ site.founded }}</li>
-      </ul>
     </div>
-    <figure class="hero__media">
-      {% image "day-old.jpg", "Day-old chicks under red brooder lamps, spread around feeders and drinkers.", "(min-width: 60em) 50vw, 100vw", { eager: true } %}
-    </figure>
+    <div class="hero__visual">
+      <figure class="hero__media">
+        {% image "day-old.jpg", "Day-old chicks under brooder lamps, spread around feeders and drinkers.", "(min-width: 60em) 45vw, 100vw", { eager: true, duotone: true } %}
+      </figure>
+      {#- A shipping tag tied to the crate: when stock could reach you, and the
+          promises that travel with it. The date is filled in by main.js. #}
+      <div class="tag">
+        <p class="tag__band">Ordering now</p>
+        <p class="tag__date" data-earliest-line hidden>
+          Order today for delivery from
+          <strong data-earliest="{{ site.leadTimeWeeks * 7 }}" data-format="long">{{ site.leadTimeWeeks }} weeks from today</strong>
+        </p>
+        <dl class="tag__rows">
+          <div><dt>From</dt><dd>{{ site.address.street }}, {{ site.address.locality }}</dd></div>
+          <div><dt>To</dt><dd>Your farm, anywhere in {{ site.address.countryName }}</dd></div>
+          <div><dt>Lead time</dt><dd>{{ site.leadTimeWeeks }} weeks</dd></div>
+          <div><dt>Checks</dt><dd>Health-checked and vaccinated</dd></div>
+        </dl>
+        <p class="tag__stamp">Since <span>{{ site.founded }}</span></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -93,7 +109,7 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
       </ul>
     </div>
     <figure class="split__media">
-      {% image "us.jpg", "Brown, black and buff hens foraging on wood chips in a farmyard.", "(min-width: 60em) 45vw, 100vw" %}
+      {% image "us.jpg", "A hen in long grass in front of a rural homestead.", "(min-width: 60em) 45vw, 100vw" %}
     </figure>
   </div>
 </section>
@@ -132,6 +148,21 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
       {%- endfor %}
     </div>
   </div>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for item in faqs %}
+        {
+          "@type": "Question",
+          "name": {{ item.q | json | safe }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | json | safe }} }
+        }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+  </script>
 </section>
 
 {% include "partials/order-band.njk" %}

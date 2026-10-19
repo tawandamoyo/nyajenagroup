@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 permalink: /order.html
 title: Order stock
-description: Order day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits or goats from Nyajena Agricultural Group in Masvingo. Send your order on WhatsApp and get a price and delivery date within one business day.
+description: Order chicks, broilers, layers, other poultry, rabbits or goats from Masvingo on WhatsApp. We reply with a price and delivery date within one business day.
 hideFab: true
 ---
 <section class="section order-page">
@@ -22,7 +22,6 @@ hideFab: true
       id="order-form"
       novalidate
       data-whatsapp="{{ site.whatsapp }}"
-      data-lead-days="{{ site.leadTimeWeeks * 7 }}"
     >
       <p class="field-error" id="form-error-summary" role="alert" hidden>Please check the highlighted fields before continuing.</p>
       <fieldset class="field-group" aria-describedby="stock-error">
@@ -71,7 +70,7 @@ hideFab: true
         <div class="field">
           <label for="date">Preferred date <span class="optional">(optional)</span></label>
           <input type="date" id="date" name="date" aria-describedby="date-hint date-error" />
-          <p class="hint" id="date-hint">Earliest we can usually deliver: <span data-earliest>{{ site.leadTimeWeeks }} weeks from today</span>. Need it sooner? Pick your date and we’ll tell you what’s ready.</p>
+          <p class="hint" id="date-hint">Earliest we can usually deliver: <span data-earliest="{{ site.leadTimeWeeks * 7 }}">{{ site.leadTimeWeeks }} weeks from today</span>. Need it sooner? Pick your date and we’ll tell you what’s ready.</p>
           <p class="field-error" id="date-error" hidden>Choose today or a future date, or leave this blank.</p>
         </div>
       </fieldset>

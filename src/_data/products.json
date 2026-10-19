@@ -6,10 +6,10 @@
     "group": "Poultry",
     "orderOptions": ["day-old-chicks"],
     "title": "Day-old chicks: broiler and layer strains",
-    "description": "Vaccinated Ross 308 and Cobb 500 broiler chicks and Hy-Line Brown and Lohmann Brown layer chicks from Masvingo, delivered with a brooding plan and a dedicated WhatsApp line for the first 14 days.",
+    "description": "Vaccinated Ross 308 and Cobb 500 broiler chicks and Hy-Line and Lohmann Brown layer chicks from Masvingo, delivered with a brooding plan and 14 days of support.",
     "summary": "Broiler and layer chicks, vaccinated and graded for even weights.",
-    "image": "day-old.jpg",
-    "alt": "Hundreds of day-old chicks under red brooder lamps, with feeders and drinkers spread across the floor.",
+    "image": "chicks.jpg",
+    "alt": "Day-old chicks crowding round a drinker on wood shavings.",
     "lede": "Chicks hatched, vaccinated and graded for uniformity, then delivered to your farm with a brooding plan written for Zimbabwean conditions.",
     "intro": [
       "Every batch comes from a biosecure hatchery and travels in ventilated, sanitised chick boxes."
@@ -47,8 +47,7 @@
     "description": "Broiler growers and finishers from Masvingo, delivered at 3–6 weeks old with feed bundles, on-farm weighing and veterinary support.",
     "summary": "Growers and finishers for meat production, delivered at 3–6 weeks.",
     "image": "broilers.jpg",
-    "focus": "50% 60%",
-    "alt": "White broiler chickens in an open-sided poultry house with hanging feeders.",
+    "alt": "White broiler chickens in an open-sided poultry house with rows of red feeders.",
     "lede": "Broilers bred for even growth and good feed conversion, so your batch reaches market weight together.",
     "intro": [
       "We manage feed, health and housing from the breeder flock to your farm gate. Each delivery comes with production benchmarks so you can track your batch week by week."
@@ -86,7 +85,8 @@
     "description": "Layer pullets and point-of-lay hens from Masvingo with full vaccination records, feed phase charts and lighting programmes.",
     "summary": "Pullets and point-of-lay hens with full vaccination records.",
     "image": "layers.jpg",
-    "alt": "A close group of brown laying hens on grass.",
+    "focus": "50% 12%",
+    "alt": "A brown laying hen with a red comb, close up.",
     "lede": "Pullets and point-of-lay hens selected for steady egg size, strong shells and a long, steady laying period.",
     "intro": [
       "Each flock comes with feed phase charts, a lighting programme and a vaccination schedule, whether you run cages, deep litter or free range."
@@ -126,12 +126,11 @@
     "group": "Poultry",
     "orderOptions": ["guinea-fowl", "turkeys", "ducks"],
     "title": "Guinea fowl, turkeys and ducks",
-    "description": "Guinea fowl keets, broad-breasted turkeys and Pekin and Muscovy ducks from Masvingo for hotels, restaurants and festive-season orders, with nutrition and vaccination plans.",
+    "description": "Guinea fowl keets, broad-breasted turkeys and Pekin and Muscovy ducks from Masvingo for hotels, restaurants and festive-season orders.",
     "summary": "Birds for festive orders, hotels and restaurants.",
     "image": "other-poultry.jpg",
-    "focus": "40% 75%",
-    "zoom": 1.8,
-    "alt": "A guinea fowl in a yard with white ducks and geese behind it.",
+    "focus": "60% 50%",
+    "alt": "A group of helmeted guinea fowl foraging on short grass.",
     "lede": "Hardy birds for hotels, restaurants and festive-season orders.",
     "intro": [
       "Every order comes with biosecurity advice, a nutrition guide and a vaccination plan that works for mixed-species setups."
@@ -180,8 +179,8 @@
     "description": "New Zealand White, California and Chinchilla rabbits from Masvingo as breeding trios or grow-out stock, with housing designs, breeding calendars and feed plans.",
     "summary": "Breeding trios and grow-out stock, with breeding calendars.",
     "image": "rabbit.jpg",
-    "focus": "28% 55%",
-    "alt": "A young grey rabbit eating fresh grass.",
+    "focus": "65% 55%",
+    "alt": "A brown rabbit sitting on straw in a wooden hutch.",
     "lede": "Fast-breeding meat rabbits that do well on local forage, for backyard projects through to commercial units.",
     "intro": [
       "We supply breeding trios and grow-out stock, and help you choose a housing system that fits your space and budget. A trio is one buck and two does."
@@ -217,8 +216,8 @@
     "description": "Boer, Kalahari Red and Mashona goats from Masvingo for meat and breeding, with pasture rotation guides, health protocols and kid nutrition plans.",
     "summary": "Boer, Kalahari Red and Mashona goats for meat and breeding.",
     "image": "goats.jpg",
-    "focus": "62% 70%",
-    "alt": "A small herd of spotted brown and white goats walking across dry grassland.",
+    "focus": "55% 55%",
+    "alt": "Goats with brown heads and white bodies in a pen, one looking over the log rail.",
     "lede": "Hardy meat and breeding goats suited to Zimbabwean grazing, for semi-intensive and free-range systems.",
     "intro": [
       "We help you select a breeding herd and plan housing, grazing and cash flow for the years it takes to build it. Tell us how many does and bucks you want, or describe your current herd and we’ll suggest a mix."
