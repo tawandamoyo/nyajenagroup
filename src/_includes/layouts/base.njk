@@ -21,14 +21,17 @@
     <meta property="og:locale" content="en_ZW" />
     {%- if site.url %}
     <meta property="og:url" content="{{ page.url | absoluteUrl(site.url) }}" />
-    {#- Product pages preview with their own photo; other pages can set `photo`. #}
+    {#- Product pages preview with their own photo; other pages can set `photo`,
+        otherwise they get the branded card (source: docs/social-card.html). #}
     {%- set preview = product or photo %}
     {%- if preview %}
     {% socialImage preview.image, preview.alt, preview.focus, site.url %}
     {%- else %}
-    <meta property="og:image" content="{{ '/assets/brand/logo-512.jpg' | absoluteUrl(site.url) }}" />
-    <meta property="og:image:alt" content="{{ site.name }} logo" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="{{ '/assets/brand/social-card.jpg' | absoluteUrl(site.url) }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ site.name }} logo: poultry and livestock from Masvingo" />
+    <meta name="twitter:card" content="summary_large_image" />
     {%- endif %}
     {%- endif %}
 
