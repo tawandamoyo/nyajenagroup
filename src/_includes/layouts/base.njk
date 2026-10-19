@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-ZW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>document.documentElement.classList.add("js")</script>
+    {%- set pageTitle = (title + " | " + site.name) if title else (site.name + " | Poultry and livestock from Masvingo") %}
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="theme-color" content="#f7f8f3" />
+    {%- if site.url %}
+    <link rel="canonical" href="{{ page.url | absoluteUrl(site.url) }}" />
+    {%- endif %}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{{ title or site.name }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:locale" content="en_ZW" />
+    {%- if site.url %}
+    <meta property="og:url" content="{{ page.url | absoluteUrl(site.url) }}" />
+    <meta property="og:image" content="{{ '/assets/brand/logo-512.jpg' | absoluteUrl(site.url) }}" />
+    {%- endif %}
+
+    <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/assets/brand/logo-mark.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+
+    <link rel="preload" href="/assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": {{ site.name | json | safe }},
+        "description": "Supplier of day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats, with farmer support.",
+        "telephone": {{ site.phone.e164 | json | safe }},
+        "foundingDate": "{{ site.founded }}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": {{ site.address.street | json | safe }},
+          "addressLocality": {{ site.address.locality | json | safe }},
+          "addressCountry": {{ site.address.country | json | safe }}
+        },
+        "areaServed": "Zimbabwe"
+        {%- if site.url %},
+        "url": {{ site.url | json | safe }},
+        "logo": {{ '/assets/brand/logo-512.jpg' | absoluteUrl(site.url) | json | safe }}
+        {%- endif %}
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {% include "partials/icons.njk" %}
+    {% include "partials/header.njk" %}
+
+    <main id="main" tabindex="-1">
+      {{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+
+    {%- if not hideFab %}
+    <a
+      class="whatsapp-fab"
+      href="https://wa.me/{{ site.whatsapp }}"
+      rel="noopener"
+      aria-label="Chat with us on WhatsApp"
+    >
+      <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>
+    </a>
+    {%- endif %}
+
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

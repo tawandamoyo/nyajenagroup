@@ -1,0 +1,110 @@
+---
+layout: layouts/base.njk
+permalink: /order.html
+title: Order stock
+description: Order day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits or goats from Nyajena Agricultural Group. Send your order on WhatsApp and get a price and delivery date within one business day.
+hideFab: true
+---
+<section class="section order-page">
+  <div class="wrap order-page__inner">
+    <div class="order-page__intro">
+      <h1>Order stock</h1>
+      <p class="lede">Fill this in and we’ll open WhatsApp with your order ready to send. We reply within one business day with a price and delivery date.</p>
+      <p>Book at least {{ site.leadTimeWeeks }} weeks before you want delivery.</p>
+      <div class="order-page__alt">
+        <p>Prefer to talk?</p>
+        <a class="button button--ghost" href="tel:{{ site.phone.e164 }}">
+          <svg aria-hidden="true"><use href="#i-phone" /></svg>Call {{ site.phone.display }}
+        </a>
+      </div>
+    </div>
+
+    <form
+      class="order-form"
+      id="order-form"
+      novalidate
+      data-whatsapp="{{ site.whatsapp }}"
+      data-lead-days="{{ site.leadTimeWeeks * 7 }}"
+    >
+      <fieldset class="field-group" aria-describedby="stock-error">
+        <legend>What do you need?</legend>
+        <p class="hint">Tick each line and add a number. A rough number is fine.</p>
+        <ul class="stock-picker" role="list">
+          {%- for opt in orderOptions %}
+          <li class="stock-picker__row">
+            <input type="checkbox" id="stock-{{ opt.value }}" name="stock" value="{{ opt.value }}" data-label="{{ opt.label }}" />
+            <label for="stock-{{ opt.value }}">{{ opt.label }}</label>
+            <span class="stock-picker__qty">
+              <label class="visually-hidden" for="qty-{{ opt.value }}">How many {{ opt.label | lower }}?</label>
+              <input type="text" id="qty-{{ opt.value }}" name="qty-{{ opt.value }}" inputmode="numeric" placeholder="e.g. {{ opt.example }}" disabled />
+              <span aria-hidden="true">{{ opt.unit }}</span>
+            </span>
+          </li>
+          {%- endfor %}
+        </ul>
+        <p class="field-error" id="stock-error" hidden>Choose at least one type of stock.</p>
+        <div class="check">
+          <input type="checkbox" id="extras" name="extras" />
+          <label for="extras">Also quote me for feed, vaccines or brooding equipment</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field-group">
+        <legend>Delivery</legend>
+        <div class="field">
+          <label for="location">Town or district</label>
+          <input type="text" id="location" name="location" autocomplete="address-level2" required aria-describedby="location-error" />
+          <p class="field-error" id="location-error" hidden>Tell us where to deliver so we can plan transport.</p>
+        </div>
+        <div class="field">
+          <label for="date">Preferred delivery date <span class="optional">(optional)</span></label>
+          <input type="date" id="date" name="date" aria-describedby="date-hint" />
+          <p class="hint" id="date-hint">Earliest we can usually deliver: <span data-earliest>{{ site.leadTimeWeeks }} weeks from today</span>.</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="field-group">
+        <legend>Your details</legend>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error" />
+          <p class="field-error" id="name-error" hidden>Enter your name.</p>
+        </div>
+        <div class="field">
+          <label for="phone">Phone or WhatsApp number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required aria-describedby="phone-error" placeholder="07..." />
+          <p class="field-error" id="phone-error" hidden>Enter a number we can call or message you on.</p>
+        </div>
+        <div class="field">
+          <label for="notes">Anything else? <span class="optional">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Your housing, experience, or questions for our team"></textarea>
+        </div>
+      </fieldset>
+
+      <p class="privacy">We only use your details to handle this order. We share them with our partner vets only if your stock needs veterinary care.</p>
+
+      <noscript>
+        <p class="notice">This form needs JavaScript to open WhatsApp. You can also message us on WhatsApp at {{ site.phone.display }} or call the same number.</p>
+      </noscript>
+
+      <button class="button button--primary button--block" type="submit">
+        <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Send order on WhatsApp
+      </button>
+    </form>
+
+    <section class="order-sent" id="order-sent" hidden tabindex="-1" aria-labelledby="order-sent-title">
+      <h2 id="order-sent-title">Your order is ready in WhatsApp</h2>
+      <p>Press send in WhatsApp to reach us. If WhatsApp didn’t open, use one of these:</p>
+      <div class="actions">
+        <a class="button button--primary" id="order-sent-link" href="https://wa.me/{{ site.whatsapp }}" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Open WhatsApp
+        </a>
+        <button class="button button--ghost" type="button" id="order-copy">Copy order text</button>
+      </div>
+      <p class="visually-hidden" role="status" id="order-copy-status"></p>
+      <label class="visually-hidden" for="order-text">Your order</label>
+      <textarea id="order-text" rows="9" readonly></textarea>
+      <p>Or call us on <a href="tel:{{ site.phone.e164 }}">{{ site.phone.display }}</a>. <button class="link-button" type="button" id="order-edit">Change my order</button></p>
+    </section>
+  </div>
+</section>

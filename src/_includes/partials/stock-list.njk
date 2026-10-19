@@ -1,0 +1,22 @@
+{# Expects `stockItems` (array of products) and optional `stockHeading` in scope.
+   The whole row links to the product page; the Order link sits above that. #}
+<ul class="stock-list" role="list">
+  {%- for p in stockItems %}
+  <li class="stock-row">
+    <div class="stock-row__media"{% if p.zoom %} style="--zoom: {{ p.zoom }}; --focus: {{ p.focus }}"{% endif %}>
+      {% image p.image, "", "(min-width: 60em) 14rem, 7rem", { focus: p.focus } %}
+    </div>
+    <div class="stock-row__body">
+      {%- set h = stockHeading or "h4" %}
+      <{{ h }} class="stock-row__name"><a href="{{ p.url }}">{{ p.name }}</a></{{ h }}>
+      <p class="stock-row__summary">{{ p.summary }}</p>
+    </div>
+    <dl class="stock-row__facts">
+      {%- for f in p.facts | batch(2) | first %}
+      <div><dt>{{ f.label }}</dt><dd>{{ f.short or f.value }}</dd></div>
+      {%- endfor %}
+    </dl>
+    <a class="stock-row__order" href="/order.html?stock={{ p.orderOptions | join(',') }}">Order<span class="visually-hidden"> {{ p.name | lower }}</span></a>
+  </li>
+  {%- endfor %}
+</ul>

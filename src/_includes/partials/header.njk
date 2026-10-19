@@ -1,0 +1,32 @@
+{%- set navItems = [
+  { label: "Our stock", url: "/#stock" },
+  { label: "How to order", url: "/#how-to-order" },
+  { label: "Farmer stories", url: "/testimonials.html" },
+  { label: "About us", url: "/about.html" }
+] %}
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/">
+      <img src="/assets/brand/logo-mark.svg" alt="" width="44" height="44" />
+      <span class="brand__name">Nyajena <span>Agricultural Group</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
+        <svg aria-hidden="true" class="when-closed"><use href="#i-menu" /></svg>
+        <svg aria-hidden="true" class="when-open"><use href="#i-close" /></svg>
+        <span>Menu</span>
+      </button>
+      <ul id="site-nav-list" class="site-nav__list">
+        {%- for item in navItems %}
+        <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+        <li class="site-nav__call">
+          <a href="tel:{{ site.phone.e164 }}"><svg aria-hidden="true"><use href="#i-phone" /></svg>{{ site.phone.display }}</a>
+        </li>
+      </ul>
+    </nav>
+
+    <a class="button button--primary button--small site-header__order" href="/order.html">Order stock</a>
+  </div>
+</header>

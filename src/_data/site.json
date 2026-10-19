@@ -1,0 +1,21 @@
+{
+  "name": "Nyajena Agricultural Group",
+  "shortName": "Nyajena",
+  "tagline": "Quality you can trust",
+  "url": "",
+  "founded": 2014,
+  "phone": {
+    "display": "+263 77 724 9994",
+    "e164": "+263777249994"
+  },
+  "whatsapp": "263777249994",
+  "email": "",
+  "address": {
+    "street": "Farm 34 Glenlivet",
+    "locality": "Masvingo",
+    "country": "ZW",
+    "countryName": "Zimbabwe"
+  },
+  "leadTimeWeeks": 3,
+  "social": []
+}

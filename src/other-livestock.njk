@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+permalink: /other-livestock.html
+title: Rabbits and goats
+description: Rabbits and goats from Nyajena Agricultural Group, with breeding stock, housing designs and help finding buyers.
+eleventyExcludeFromCollections: true
+---
+{#- Kept so old links to other-livestock.html#rabbits and #goats still land somewhere useful. #}
+<nav class="wrap crumbs" aria-label="Breadcrumb">
+  <ol role="list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/other-livestock.html" aria-current="page">Rabbits and goats</a></li>
+  </ol>
+</nav>
+<section class="section section--flush-top">
+  <div class="wrap">
+    <header class="section__head">
+      <h1>Rabbits and goats</h1>
+      <p class="lede">Small livestock to sit alongside your poultry, with breeding stock and help finding buyers.</p>
+    </header>
+    {%- set stockItems = products | productsBySlugs(["rabbits", "goats"]) %}
+    {%- set stockHeading = "h2" %}
+    <div id="rabbits"></div><div id="goats"></div>
+    {% include "partials/stock-list.njk" %}
+  </div>
+</section>
+{% include "partials/order-band.njk" %}

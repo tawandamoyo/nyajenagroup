@@ -1,0 +1,257 @@
+[
+  {
+    "slug": "day-old-chicks",
+    "url": "/day-old-chicks.html",
+    "name": "Day-old chicks",
+    "group": "Poultry",
+    "orderOptions": ["day-old-chicks"],
+    "title": "Day-old chicks: broiler and layer strains",
+    "description": "Vaccinated Ross 308 and Cobb 500 broiler chicks and Hy-Line Brown and Lohmann Brown layer chicks, delivered with a brooding plan and 14 days of WhatsApp support.",
+    "summary": "Broiler and layer chicks, vaccinated and graded for even weights.",
+    "image": "day-old.jpg",
+    "alt": "Hundreds of day-old chicks under red brooder lamps, with feeders and drinkers spread across the floor.",
+    "lede": "Chicks hatched, vaccinated and graded for uniformity, then delivered to your farm with a brooding plan written for Zimbabwean conditions.",
+    "intro": [
+      "Whether you are starting with 200 birds or scaling to 10,000, every batch comes from a biosecure hatchery and travels in sanitised, sealed crates under monitored conditions."
+    ],
+    "facts": [
+      { "label": "Broiler strains", "value": "Ross 308, Cobb 500" },
+      { "label": "Layer strains", "value": "Hy-Line Brown, Lohmann Brown" },
+      { "label": "Vaccinated against", "value": "Marek’s, Gumboro, Newcastle" },
+      { "label": "Chick weight", "value": "40–44 g" },
+      { "label": "Support", "value": "WhatsApp, first 14 days" }
+    ],
+    "lists": [
+      {
+        "heading": "What comes with your chicks",
+        "items": [
+          "A pre-delivery checklist covering litter, temperatures, drinkers and backup power.",
+          "A brooding starter pack with feed, vitamins and disinfectant.",
+          "Help on delivery day to record starting weights.",
+          "A simple way to track daily mortality, water and feed intake."
+        ]
+      },
+      {
+        "heading": "What farmers can expect",
+        "items": [
+          "Mortality below 1.5% when the brooding guide is followed.",
+          "Even chick weights, so the whole batch starts eating quickly.",
+          "Delivery dates that match when your house is ready."
+        ]
+      }
+    ],
+    "related": ["broilers", "layers", "other-poultry"]
+  },
+  {
+    "slug": "broilers",
+    "url": "/broilers.html",
+    "name": "Broilers",
+    "group": "Poultry",
+    "orderOptions": ["broilers"],
+    "title": "Broilers: growers and finishers",
+    "description": "Broiler growers and finishers bred for even growth and feed efficiency, with 35–42 day cycles, 1.8–2.2 kg live weight targets and veterinary support.",
+    "summary": "Meat birds for 35–42 day cycles, with feed and health plans.",
+    "image": "broilers.jpg",
+    "focus": "50% 60%",
+    "alt": "White broiler chickens in an open-sided poultry house with hanging feeders.",
+    "lede": "Broilers bred for even growth and good feed conversion, so your batch reaches market weight together.",
+    "intro": [
+      "We manage feed, health and housing conditions from the breeder flock to your farm gate. Each delivery comes with production benchmarks so you can track your batch against the target, week by week."
+    ],
+    "facts": [
+      { "label": "Age at delivery", "value": "3–6 weeks" },
+      { "label": "Cycle length", "value": "35–42 days" },
+      { "label": "Live weight target", "value": "1.8–2.2 kg" },
+      { "label": "Feed conversion", "value": "1.68–1.75 average" },
+      { "label": "Water to feed", "value": "1.7 : 1" }
+    ],
+    "lists": [
+      {
+        "heading": "What we offer",
+        "items": [
+          "Growers and finishers delivered from 3 to 6 weeks old.",
+          "Contract growing for abattoirs and retailers.",
+          "Feed and medication bundles priced for the full cycle.",
+          "On-farm weighing and grading.",
+          "Vet call-outs for diagnosis and treatment."
+        ]
+      },
+      {
+        "heading": "Selling your birds",
+        "text": "We help line up your finish date with abattoir slots, wholesale buyers and cold storage, so birds leave your farm at peak value. You also get feed price updates, seasonal vaccination changes and labour schedules."
+      }
+    ],
+    "related": ["day-old-chicks", "layers", "other-poultry"]
+  },
+  {
+    "slug": "layers",
+    "url": "/layers.html",
+    "name": "Layers",
+    "group": "Poultry",
+    "orderOptions": ["layers"],
+    "title": "Layers: pullets and point-of-lay hens",
+    "description": "Layer pullets and point-of-lay hens with full vaccination history, plus feed phase charts, lighting programmes and egg production tracking.",
+    "summary": "Pullets and point-of-lay hens with full vaccination records.",
+    "image": "layers.jpg",
+    "alt": "A close group of brown laying hens on grass.",
+    "lede": "Pullets and point-of-lay hens selected for steady egg size, strong shells and long, flat production curves.",
+    "intro": [
+      "Each flock comes with feed phase charts, a lighting programme and a vaccination schedule, whether you run cages, deep litter or free range."
+    ],
+    "facts": [
+      { "label": "Pullets", "value": "6–8 weeks old" },
+      { "label": "Point of lay", "value": "16–18 weeks old" },
+      { "label": "Egg colour", "value": "Brown and tinted" },
+      { "label": "Housing", "value": "Cage or free range" },
+      { "label": "Records", "value": "Full vaccination history" }
+    ],
+    "lists": [
+      {
+        "heading": "What we offer",
+        "items": [
+          "Layer feed blends, calcium boosters and vitamin packs.",
+          "Nest and perch layouts sized to your flock.",
+          "Egg collection routines that cut breakages and contamination.",
+          "Lighting programmes for open-sided and closed houses."
+        ]
+      },
+      {
+        "heading": "Keeping production steady",
+        "items": [
+          "Tracking of hen-day percentage and egg mass.",
+          "Vet diagnosis for coccidiosis, infectious bronchitis and other layer diseases.",
+          "Flock sizing matched to local wholesale and retail egg demand."
+        ]
+      }
+    ],
+    "related": ["day-old-chicks", "broilers", "other-poultry"]
+  },
+  {
+    "slug": "other-poultry",
+    "url": "/other-poultry.html",
+    "name": "Guinea fowl, turkeys and ducks",
+    "navName": "Other poultry",
+    "group": "Poultry",
+    "orderOptions": ["guinea-fowl", "turkeys", "ducks"],
+    "title": "Guinea fowl, turkeys and ducks",
+    "description": "Guinea fowl keets, broad-breasted turkeys and Pekin and Muscovy ducks for niche, festive and hospitality markets, with nutrition and vaccination plans.",
+    "summary": "Birds for festive orders, hotels and other higher-value markets.",
+    "image": "other-poultry.jpg",
+    "focus": "40% 75%",
+    "zoom": 1.8,
+    "alt": "A guinea fowl in a yard with white ducks and geese behind it.",
+    "lede": "Hardy birds for higher-value markets: hotels, festive season orders and community protein schemes.",
+    "intro": [
+      "Each programme comes with biosecurity support, a nutrition guide and a vaccination plan that works for mixed-species setups."
+    ],
+    "facts": [
+      { "label": "Guinea fowl", "value": "Keets" },
+      { "label": "Turkeys", "value": "Broad-breasted white and bronze, poults or growers", "short": "Poults or growers" },
+      { "label": "Ducks", "value": "Pekin and Muscovy" },
+      { "label": "Turkey dressed weight", "value": "6–8 kg" }
+    ],
+    "groups": [
+      {
+        "id": "guinea-fowl",
+        "name": "Guinea fowl",
+        "text": "Disease-resistant birds with lean meat that settle quickly into free range. You get housing designs that limit flight, a high-protein starter feed plan and advice on keeping predators out."
+      },
+      {
+        "id": "turkeys",
+        "name": "Turkeys",
+        "text": "Poults or growers, fed on a schedule that reaches 6–8 kg dressed weight in time for holiday orders. Vaccination covers fowl pox and Newcastle disease."
+      },
+      {
+        "id": "ducks",
+        "name": "Ducks",
+        "text": "Meat and eggs from the same flock. We advise on pond or trough water, litter and breeding rotations so production keeps going all year."
+      }
+    ],
+    "lists": [
+      {
+        "heading": "Help with selling",
+        "items": [
+          "Cold chain and slaughter guides for seasonal turkey sales.",
+          "Packaging ideas for premium markets.",
+          "Contract farming with hotels and retailers.",
+          "Record sheets for mixed-species flocks."
+        ]
+      }
+    ],
+    "related": ["day-old-chicks", "broilers", "layers"]
+  },
+  {
+    "slug": "rabbits",
+    "url": "/rabbits.html",
+    "name": "Rabbits",
+    "group": "Livestock",
+    "orderOptions": ["rabbits"],
+    "title": "Rabbits: breeding trios and grow-out stock",
+    "description": "New Zealand White, California and Chinchilla rabbits as breeding trios or grow-out stock, with housing designs, breeding calendars and feed plans.",
+    "summary": "Breeding trios and grow-out stock, with breeding calendars.",
+    "image": "rabbit.jpg",
+    "focus": "28% 55%",
+    "alt": "A young grey rabbit eating fresh grass.",
+    "lede": "Fast-breeding meat rabbits that do well on local forage, for backyard projects through to commercial units.",
+    "intro": [
+      "We supply breeding trios and grow-out stock, and help you choose a housing system that fits your space and budget."
+    ],
+    "facts": [
+      { "label": "Breeds", "value": "New Zealand White, California, Chinchilla" },
+      { "label": "Supplied as", "value": "Breeding trios or grow-out stock", "short": "Trios or grow-out" },
+      { "label": "Housing", "value": "Battery, hutch or deep litter" }
+    ],
+    "lists": [
+      {
+        "heading": "What comes with your rabbits",
+        "items": [
+          "Housing designs for battery, hutch and deep litter systems.",
+          "Breeding calendars, kindling management and record sheets.",
+          "Feed plans built on local forage and pellets."
+        ]
+      },
+      {
+        "heading": "Selling your rabbits",
+        "text": "We connect farmers with butcheries, restaurants and other buyers looking for rabbit meat, and help with grading, cold chain planning and contracts for repeat orders."
+      }
+    ],
+    "related": ["goats", "day-old-chicks", "other-poultry"]
+  },
+  {
+    "slug": "goats",
+    "url": "/goats.html",
+    "name": "Goats",
+    "group": "Livestock",
+    "orderOptions": ["goats"],
+    "title": "Goats: Boer, Kalahari Red and Mashona",
+    "description": "Boer, Kalahari Red and Mashona goats for meat and breeding, with pasture rotation guides, health protocols and kid nutrition plans.",
+    "summary": "Boer, Kalahari Red and Mashona goats for meat and breeding.",
+    "image": "goats.jpg",
+    "focus": "62% 70%",
+    "alt": "A small herd of spotted brown and white goats walking across dry grassland.",
+    "lede": "Hardy meat and breeding goats suited to Zimbabwean grazing, for semi-intensive and free-range systems.",
+    "intro": [
+      "We help you select a breeding herd and plan housing, grazing and cash flow for the years it takes to build it."
+    ],
+    "facts": [
+      { "label": "Breeds", "value": "Boer, Kalahari Red, Mashona" },
+      { "label": "Purpose", "value": "Meat and breeding" },
+      { "label": "System", "value": "Semi-intensive with pasture rotation" }
+    ],
+    "lists": [
+      {
+        "heading": "What comes with your goats",
+        "items": [
+          "Housing designs with pasture rotation guides.",
+          "Health protocols for deworming, dipping and vaccination.",
+          "Breeding herd selection and kid nutrition plans."
+        ]
+      },
+      {
+        "heading": "Selling your goats",
+        "text": "We introduce farmers to butcheries, restaurants and export buyers, and help with carcass standards, cold chain planning and contracts for repeat orders."
+      }
+    ],
+    "related": ["rabbits", "layers", "broilers"]
+  }
+]

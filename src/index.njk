@@ -1,0 +1,135 @@
+---
+layout: layouts/base.njk
+description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats from Masvingo, delivered across Zimbabwe with farmer support from booking to market.
+---
+<section class="hero">
+  <div class="wrap hero__inner">
+    <div class="hero__text">
+      <h1 class="hero__title">Healthy chicks and livestock, delivered to your farm</h1>
+      <p class="hero__lede">
+        Vaccinated poultry, rabbits and goats from Masvingo. Every order comes with a plan for the
+        first weeks, and our team stays on WhatsApp for the rest of the cycle.
+      </p>
+      <div class="actions">
+        <a class="button button--primary" href="/order.html">Start an order</a>
+        <a class="button button--ghost" href="tel:{{ site.phone.e164 }}">
+          <svg aria-hidden="true"><use href="#i-phone" /></svg>Call {{ site.phone.display }}
+        </a>
+      </div>
+      <ul class="hero__points" role="list">
+        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Vaccinated before delivery</li>
+        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Delivered across Zimbabwe</li>
+        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Book {{ site.leadTimeWeeks }} weeks ahead</li>
+      </ul>
+    </div>
+    <figure class="hero__media">
+      {% image "day-old.jpg", "Day-old chicks under red brooder lamps, spread around feeders and drinkers.", "(min-width: 60em) 50vw, 100vw", { eager: true } %}
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="stock" aria-labelledby="stock-title">
+  <div class="wrap">
+    <header class="section__head">
+      <h2 id="stock-title">What we supply</h2>
+      <p>Choose a line to see strains, ages and what comes with your order.</p>
+    </header>
+
+    <div class="stock-groups">
+      <div class="stock-group">
+        <h3 class="stock-group__title">Poultry</h3>
+        {%- set stockItems = products | inGroup("Poultry") %}
+        {% include "partials/stock-list.njk" %}
+      </div>
+      <div class="stock-group">
+        <h3 class="stock-group__title">Livestock</h3>
+        {%- set stockItems = products | inGroup("Livestock") %}
+        {% include "partials/stock-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint" id="how-to-order" aria-labelledby="how-title">
+  <div class="wrap">
+    <header class="section__head">
+      <h2 id="how-title">How ordering works</h2>
+      <p>Book at least {{ site.leadTimeWeeks }} weeks before you want delivery, so we can confirm stock and finish vaccinations.</p>
+    </header>
+    <ol class="steps" role="list">
+      <li class="step">
+        <h3>Send us your order</h3>
+        <p>Pick your stock, numbers and delivery date. Send it on WhatsApp or call us.</p>
+      </li>
+      <li class="step">
+        <h3>We confirm price and date</h3>
+        <p>We check availability and reply within one business day with a price and a delivery date.</p>
+      </li>
+      <li class="step">
+        <h3>Get your farm ready</h3>
+        <p>We send a checklist for housing, litter, feed, water and backup power before delivery.</p>
+      </li>
+      <li class="step">
+        <h3>Delivery and support</h3>
+        <p>Stock arrives in sanitised, sealed crates. Our field officers and vets stay on call for the whole cycle.</p>
+      </li>
+    </ol>
+    <div class="actions">
+      <a class="button button--primary" href="/order.html">Start an order</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="support" aria-labelledby="support-title">
+  <div class="wrap split">
+    <div class="split__text">
+      <h2 id="support-title">We stay with you after delivery</h2>
+      <p>We are farmers too, and we know how much rides on each cycle. Every order includes practical help from people who know your stock.</p>
+      <ul class="ticks" role="list">
+        <li>Brooding and housing layouts that suit the local climate.</li>
+        <li>Vaccination and health calendars for your area.</li>
+        <li>Feed budgets and feed conversion tracking.</li>
+        <li>Market prices and buyer introductions each cycle.</li>
+      </ul>
+    </div>
+    <figure class="split__media">
+      {% image "us.jpg", "Brown, black and buff hens foraging on wood chips in a farmyard.", "(min-width: 60em) 45vw, 100vw" %}
+    </figure>
+  </div>
+</section>
+
+<section class="section section--ruled" aria-labelledby="stories-title">
+  <div class="wrap">
+    <header class="section__head section__head--row">
+      <h2 id="stories-title">From farmers we supply</h2>
+      <a class="text-link" href="/testimonials.html">Read more farmer stories</a>
+    </header>
+    <div class="quotes">
+      {%- for t in testimonials | selectattr("featured") %}
+      <figure class="quote">
+        <blockquote><p>{{ t.quote }}</p></blockquote>
+        <figcaption>
+          <strong>{{ t.name }}</strong>
+          <span>{{ t.detail }}, {{ t.place }}</span>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--ruled" id="faq" aria-labelledby="faq-title">
+  <div class="wrap narrow">
+    <h2 id="faq-title">Common questions</h2>
+    <div class="faq">
+      {%- for item in faqs %}
+      <details{% if loop.first %} open{% endif %}>
+        <summary>{{ item.q }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/order-band.njk" %}

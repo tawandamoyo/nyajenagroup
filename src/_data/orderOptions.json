@@ -1,0 +1,10 @@
+[
+  { "value": "day-old-chicks", "label": "Day-old chicks", "unit": "chicks", "example": "500" },
+  { "value": "broilers", "label": "Broilers", "unit": "birds", "example": "300" },
+  { "value": "layers", "label": "Layers", "unit": "birds", "example": "200" },
+  { "value": "guinea-fowl", "label": "Guinea fowl", "unit": "keets", "example": "50" },
+  { "value": "turkeys", "label": "Turkeys", "unit": "birds", "example": "20" },
+  { "value": "ducks", "label": "Ducks", "unit": "birds", "example": "30" },
+  { "value": "rabbits", "label": "Rabbits", "unit": "rabbits", "example": "3 (1 trio)" },
+  { "value": "goats", "label": "Goats", "unit": "goats", "example": "10" }
+]

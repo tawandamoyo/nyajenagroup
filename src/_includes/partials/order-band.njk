@@ -1,0 +1,14 @@
+<section class="order-band" id="contact-form" aria-labelledby="order-band-title">
+  <div class="wrap order-band__inner">
+    <div>
+      <h2 id="order-band-title">{{ orderBandTitle or "Ready to place an order?" }}</h2>
+      <p>Tell us what you need and when. We reply within one business day with a price and delivery date.</p>
+    </div>
+    <div class="actions">
+      <a class="button button--primary" href="/order.html{% if orderStock %}?stock={{ orderStock }}{% endif %}">Start an order</a>
+      <a class="button button--light" href="https://wa.me/{{ site.whatsapp }}" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>WhatsApp us
+      </a>
+    </div>
+  </div>
+</section>

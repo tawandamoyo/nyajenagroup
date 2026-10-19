@@ -1,0 +1,51 @@
+---
+layout: layouts/base.njk
+permalink: /testimonials.html
+title: Farmer stories
+description: Farmers across Zimbabwe on what changed after working with Nyajena Agricultural Group, from day-old chicks and broilers to layers, rabbits and goats.
+---
+<nav class="wrap crumbs" aria-label="Breadcrumb">
+  <ol role="list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/testimonials.html" aria-current="page">Farmer stories</a></li>
+  </ol>
+</nav>
+
+<section class="section section--flush-top">
+  <div class="wrap">
+    <header class="section__head">
+      <h1>Farmer stories</h1>
+      <p class="lede">Farmers we supply, in their own words.</p>
+    </header>
+    <div class="quotes quotes--all">
+      {%- for t in testimonials %}
+      <figure class="quote">
+        <p class="quote__tag">{{ t.product }}</p>
+        <blockquote><p>{{ t.quote }}</p></blockquote>
+        <figcaption>
+          <strong>{{ t.name }}</strong>
+          <span>{{ t.detail }}, {{ t.place }}</span>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="wrap split split--top">
+    <div class="split__text">
+      <h2>What every farmer gets</h2>
+      <p>The same support sits behind each of these stories, whatever the size of the farm.</p>
+    </div>
+    <ul class="ticks" role="list">
+      <li>A WhatsApp line to our technical team for quick answers.</li>
+      <li>A visit before each cycle to check housing and biosecurity.</li>
+      <li>Introductions to processors and retailers.</li>
+      <li>Records that track feed conversion, mortality and sales.</li>
+    </ul>
+  </div>
+</section>
+
+{% set orderBandTitle = "Start your own story" %}
+{% include "partials/order-band.njk" %}
