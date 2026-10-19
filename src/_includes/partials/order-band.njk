@@ -5,7 +5,7 @@
       <p>Tell us what you need and when. We reply within one business day with a price and delivery date.</p>
     </div>
     <div class="actions">
-      <a class="button button--primary" href="/order.html{% if orderStock %}?stock={{ orderStock }}{% endif %}">Start an order</a>
+      <a class="button button--primary" href="/order.html{% if orderStock %}?stock={{ orderStock }}{% elif stockGroup %}?group={{ stockGroup }}{% endif %}">Start an order</a>
       <a class="button button--light" href="https://wa.me/{{ site.whatsapp }}" rel="noopener">
         <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>WhatsApp us
       </a>

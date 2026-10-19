@@ -1,8 +1,14 @@
----
-layout: layouts/base.njk
-permalink: /testimonials.html
-title: Farmer stories
-description: Farmers across Zimbabwe on what changed after working with Nyajena Agricultural Group, from day-old chicks and broilers to layers, rabbits and goats.
+---js
+{
+  layout: "layouts/base.njk",
+  // Not built until testimonials.json has approved quotes in it.
+  permalink: (data) => (data.testimonials.length ? "/testimonials.html" : false),
+  eleventyComputed: {
+    eleventyExcludeFromCollections: (data) => !data.testimonials.length,
+  },
+  title: "Farmer stories",
+  description: "Farmers across Zimbabwe on what changed after working with Nyajena Agricultural Group, from day-old chicks and broilers to layers, rabbits and goats.",
+}
 ---
 <nav class="wrap crumbs" aria-label="Breadcrumb">
   <ol role="list">
@@ -35,17 +41,17 @@ description: Farmers across Zimbabwe on what changed after working with Nyajena 
 <section class="section section--tint">
   <div class="wrap split split--top">
     <div class="split__text">
-      <h2>What every farmer gets</h2>
-      <p>The same support sits behind each of these stories, whatever the size of the farm.</p>
+      <h2>Planning your own flock or herd?</h2>
+      <p>Tell us what you need and ask what stock and support are available for your farm.</p>
     </div>
     <ul class="ticks" role="list">
-      <li>A WhatsApp line to our technical team for quick answers.</li>
-      <li>A visit before each cycle to check housing and biosecurity.</li>
-      <li>Introductions to processors and retailers.</li>
-      <li>Records that track feed conversion, mortality and sales.</li>
+      <li>Confirm stock type, age, quantity and health records.</li>
+      <li>Ask about housing, feed and equipment before arrival.</li>
+      <li>Check delivery dates and the full cost before booking.</li>
+      <li>Discuss aftercare and any fees with our team.</li>
     </ul>
   </div>
 </section>
 
-{% set orderBandTitle = "Start your own story" %}
+{% set orderBandTitle = "Order your first batch" %}
 {% include "partials/order-band.njk" %}

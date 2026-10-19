@@ -1,10 +1,31 @@
 [
-  { "value": "day-old-chicks", "label": "Day-old chicks", "unit": "chicks", "example": "500" },
-  { "value": "broilers", "label": "Broilers", "unit": "birds", "example": "300" },
-  { "value": "layers", "label": "Layers", "unit": "birds", "example": "200" },
+  {
+    "value": "day-old-chicks", "label": "Day-old chicks", "unit": "chicks", "example": "500",
+    "variantLabel": "Type of chick", "variants": ["Broiler chicks", "Layer chicks", "Both broiler and layer chicks"]
+  },
+  {
+    "value": "broilers", "label": "Broilers", "unit": "birds", "example": "300",
+    "variantLabel": "Stage", "variants": ["Growers", "Finishers"]
+  },
+  {
+    "value": "layers", "label": "Layers", "unit": "birds", "example": "200",
+    "variantLabel": "Age group", "variants": ["Pullets", "Point-of-lay hens"]
+  },
   { "value": "guinea-fowl", "label": "Guinea fowl", "unit": "keets", "example": "50" },
-  { "value": "turkeys", "label": "Turkeys", "unit": "birds", "example": "20" },
-  { "value": "ducks", "label": "Ducks", "unit": "birds", "example": "30" },
-  { "value": "rabbits", "label": "Rabbits", "unit": "rabbits", "example": "3 (1 trio)" },
-  { "value": "goats", "label": "Goats", "unit": "goats", "example": "10" }
+  {
+    "value": "turkeys", "label": "Turkeys", "unit": "birds", "example": "20",
+    "variantLabel": "Age group", "variants": ["Poults", "Growers"]
+  },
+  {
+    "value": "ducks", "label": "Ducks", "unit": "birds", "example": "30",
+    "variantLabel": "Breed", "variants": ["Pekin", "Muscovy"]
+  },
+  {
+    "value": "rabbits", "label": "Rabbits", "unit": "rabbits", "example": "3",
+    "variantLabel": "Purpose", "variants": ["Breeding trios (3 rabbits per trio)", "Young rabbits for meat production"]
+  },
+  {
+    "value": "goats", "label": "Goats", "unit": "goats", "example": "10",
+    "variantLabel": "Purpose", "variants": ["Breeding stock", "Goats for meat"]
+  }
 ]

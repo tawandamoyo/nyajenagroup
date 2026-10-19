@@ -1,14 +1,14 @@
 ---
 layout: layouts/base.njk
-description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats from Masvingo, delivered across Zimbabwe with farmer support from booking to market.
+description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits and goats from Masvingo, delivered across Zimbabwe with support from our field team.
 ---
 <section class="hero">
   <div class="wrap hero__inner">
     <div class="hero__text">
-      <h1 class="hero__title">Healthy chicks and livestock, delivered to your farm</h1>
+      <h1 class="hero__title">Healthy poultry and livestock, delivered to your farm</h1>
       <p class="hero__lede">
-        Vaccinated poultry, rabbits and goats from Masvingo. Every order comes with a plan for the
-        first weeks, and our team stays on WhatsApp for the rest of the cycle.
+        Vaccinated poultry, plus rabbits and goats, from Masvingo. Every order comes with a plan for
+        the first weeks, and our field team stays on call for the rest of the cycle.
       </p>
       <div class="actions">
         <a class="button button--primary" href="/order.html">Start an order</a>
@@ -17,9 +17,9 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
         </a>
       </div>
       <ul class="hero__points" role="list">
-        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Vaccinated before delivery</li>
+        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Health-checked before delivery</li>
         <li><svg aria-hidden="true"><use href="#i-check" /></svg>Delivered across Zimbabwe</li>
-        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Book {{ site.leadTimeWeeks }} weeks ahead</li>
+        <li><svg aria-hidden="true"><use href="#i-check" /></svg>Supplying farmers since {{ site.founded }}</li>
       </ul>
     </div>
     <figure class="hero__media">
@@ -54,24 +54,24 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
   <div class="wrap">
     <header class="section__head">
       <h2 id="how-title">How ordering works</h2>
-      <p>Book at least {{ site.leadTimeWeeks }} weeks before you want delivery, so we can confirm stock and finish vaccinations.</p>
+      <p>Order at least {{ site.leadTimeWeeks }} weeks before you want delivery, so we can confirm stock and finish vaccinations.</p>
     </header>
     <ol class="steps" role="list">
       <li class="step">
         <h3>Send us your order</h3>
-        <p>Pick your stock, numbers and delivery date. Send it on WhatsApp or call us.</p>
+        <p>Pick your stock, rough numbers and a delivery date. Send it on WhatsApp or call us.</p>
       </li>
       <li class="step">
-        <h3>We confirm price and date</h3>
-        <p>We check availability and reply within one business day with a price and a delivery date.</p>
+        <h3>We reply with a price and date</h3>
+        <p>Within one business day, including transport and any feed or equipment you asked for.</p>
       </li>
       <li class="step">
         <h3>Get your farm ready</h3>
-        <p>We send a checklist for housing, litter, feed, water and backup power before delivery.</p>
+        <p>Once you’ve agreed the order, we send a checklist to get your housing, feed and water ready.</p>
       </li>
       <li class="step">
         <h3>Delivery and support</h3>
-        <p>Stock arrives in sanitised, sealed crates. Our field officers and vets stay on call for the whole cycle.</p>
+        <p>Stock arrives in clean, sanitised transport. Our field officers and vets stay on call for the whole cycle.</p>
       </li>
     </ol>
     <div class="actions">
@@ -89,7 +89,7 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
         <li>Brooding and housing layouts that suit the local climate.</li>
         <li>Vaccination and health calendars for your area.</li>
         <li>Feed budgets and feed conversion tracking.</li>
-        <li>Market prices and buyer introductions each cycle.</li>
+        <li>Market prices and introductions to buyers.</li>
       </ul>
     </div>
     <figure class="split__media">
@@ -98,6 +98,7 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
   </div>
 </section>
 
+{%- if testimonials | selectattr("featured") | length %}
 <section class="section section--ruled" aria-labelledby="stories-title">
   <div class="wrap">
     <header class="section__head section__head--row">
@@ -117,6 +118,7 @@ description: Vaccinated day-old chicks, broilers, layers, guinea fowl, turkeys, 
     </div>
   </div>
 </section>
+{%- endif %}
 
 <section class="section section--ruled" id="faq" aria-labelledby="faq-title">
   <div class="wrap narrow">

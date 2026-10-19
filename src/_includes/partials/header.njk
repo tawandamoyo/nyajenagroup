@@ -1,12 +1,12 @@
 {%- set navItems = [
   { label: "Our stock", url: "/#stock" },
   { label: "How to order", url: "/#how-to-order" },
-  { label: "Farmer stories", url: "/testimonials.html" },
+  { label: "Farmer stories", url: "/testimonials.html", needsQuotes: true },
   { label: "About us", url: "/about.html" }
 ] %}
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="/">
+    <a class="brand" href="/" aria-label="{{ site.name }} home">
       <img src="/assets/brand/logo-mark.svg" alt="" width="44" height="44" />
       <span class="brand__name">Nyajena <span>Agricultural Group</span></span>
     </a>
@@ -19,7 +19,9 @@
       </button>
       <ul id="site-nav-list" class="site-nav__list">
         {%- for item in navItems %}
+        {%- if not item.needsQuotes or testimonials.length %}
         <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endif %}
         {%- endfor %}
         <li class="site-nav__call">
           <a href="tel:{{ site.phone.e164 }}"><svg aria-hidden="true"><use href="#i-phone" /></svg>{{ site.phone.display }}</a>

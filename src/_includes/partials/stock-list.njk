@@ -16,7 +16,7 @@
       <div><dt>{{ f.label }}</dt><dd>{{ f.short or f.value }}</dd></div>
       {%- endfor %}
     </dl>
-    <a class="stock-row__order" href="/order.html?stock={{ p.orderOptions | join(',') }}">Order<span class="visually-hidden"> {{ p.name | lower }}</span></a>
+    <a class="stock-row__order" href="/order.html?{% if p.orderOptions.length == 1 %}stock={{ p.orderOptions[0] }}{% else %}group={{ p.slug }}{% endif %}">Order<span class="visually-hidden"> {{ p.name | lower }}</span></a>
   </li>
   {%- endfor %}
 </ul>

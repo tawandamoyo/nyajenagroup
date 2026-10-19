@@ -572,6 +572,15 @@ main:focus {
   }
 }
 
+@media (max-width: 26em) {
+  .brand__name {
+    display: none;
+  }
+  .site-header__order {
+    padding-inline: 0.7rem;
+  }
+}
+
 /* --- Hero ---------------------------------------------------------------- */
 
 .hero {
@@ -589,7 +598,8 @@ main:focus {
 }
 
 .hero__title {
-  max-width: 14ch;
+  max-width: 18ch;
+  font-size: clamp(2.1rem, 1.3rem + 3vw, 3.4rem);
 }
 
 .hero__lede {
@@ -632,11 +642,21 @@ main:focus {
 }
 
 @media (max-width: 59.99em) {
-  .hero__media {
-    order: -1;
+  .hero {
+    padding-block: var(--space-m);
+  }
+  .hero__inner {
+    gap: var(--space-m);
   }
   .hero__media img {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 2 / 1;
+    max-height: 15rem;
+  }
+}
+
+@media (max-width: 35.99em) {
+  .hero__media img {
+    max-height: 10rem;
   }
 }
 
@@ -1117,7 +1137,7 @@ main:focus {
   }
 }
 
-@media (min-width: 60em) and (min-height: 46em) {
+@media (min-width: 60em) and (min-height: 70em) {
   .product-hero__aside {
     position: sticky;
     top: calc(var(--header-h) + 1.5rem);
@@ -1177,6 +1197,10 @@ main:focus {
   align-items: start;
 }
 
+.js .order-page__inner > noscript {
+  display: none;
+}
+
 @media (min-width: 60em) {
   .order-page__inner {
     grid-template-columns: 1fr 1.4fr;
@@ -1191,20 +1215,23 @@ main:focus {
   }
 }
 
-.order-page__alt {
-  margin-top: var(--space-l);
-  padding-top: var(--space-m);
-  border-top: 1px solid var(--sage-line);
-}
-
-.order-page__alt p {
-  margin-bottom: 0.5rem;
-  font-weight: 650;
+.order-page__call {
+  margin: 0;
+  text-align: center;
 }
 
 .order-form {
   display: grid;
   gap: var(--space-m);
+}
+
+html:not(.js) .order-form {
+  display: none;
+}
+
+.order-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .field-group {
@@ -1253,6 +1280,7 @@ fieldset > .hint {
 input[type="text"],
 input[type="tel"],
 input[type="date"],
+select,
 textarea {
   width: 100%;
   min-height: 3rem;
@@ -1269,6 +1297,7 @@ textarea {
 }
 
 input:focus-visible,
+select:focus-visible,
 textarea:focus-visible {
   outline: 3px solid var(--sorghum);
   outline-offset: 1px;
@@ -1335,6 +1364,36 @@ input[type="checkbox"] {
 .stock-picker__qty input:disabled {
   background: var(--paper);
   border-color: var(--sage-line);
+}
+
+.stock-picker__details,
+.stock-picker__error {
+  grid-column: 2 / -1;
+  min-width: 0;
+}
+
+.stock-picker__details {
+  padding-bottom: 0.3rem;
+}
+
+.stock-picker__details label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.stock-picker__details select {
+  font-size: 1rem;
+}
+
+.stock-picker__error {
+  margin-top: 0;
+}
+
+.stock-picker + .notice,
+.notice + .stock-picker {
+  margin-top: 0.75rem;
 }
 
 .stock-picker__row:not(:has(input:checked)) .stock-picker__qty {
@@ -1440,7 +1499,13 @@ input[type="checkbox"] {
   font-weight: 800;
   font-size: var(--step-1);
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.site-footer__tagline {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: var(--white);
 }
 
 .site-footer__heading {

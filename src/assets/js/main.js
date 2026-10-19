@@ -34,57 +34,102 @@ if (form) {
   const sentLink = document.getElementById("order-sent-link");
   const orderText = document.getElementById("order-text");
   const stockError = document.getElementById("stock-error");
+  const errorSummary = document.getElementById("form-error-summary");
   const stockBoxes = [...form.querySelectorAll('input[name="stock"]')];
   const dateInput = form.querySelector("#date");
   const leadDays = Number(form.dataset.leadDays) || 21;
 
   const qtyFor = (box) => form.querySelector(`#qty-${box.value}`);
+  const variantFor = (box) => form.querySelector(`#variant-${box.value}`);
+  const qtyErrorFor = (box) => document.getElementById(`qty-error-${box.value}`);
+
+  function showValidity(input, error, valid) {
+    error.hidden = valid;
+    if (valid) input.removeAttribute("aria-invalid");
+    else input.setAttribute("aria-invalid", "true");
+  }
+
+  const validQuantity = (input) => {
+    const value = input.value.trim();
+    return value === "" || (/^\d+$/.test(value) && Number.isSafeInteger(Number(value)) && Number(value) > 0);
+  };
 
   function syncQty(box) {
     const qty = qtyFor(box);
     qty.disabled = !box.checked;
-    if (!box.checked) qty.value = "";
+    const variant = variantFor(box);
+    if (variant) {
+      variant.disabled = !box.checked;
+      document.getElementById(`details-${box.value}`).hidden = !box.checked;
+    }
+    if (!box.checked) {
+      qty.value = "";
+      if (variant) variant.value = "";
+      showValidity(qty, qtyErrorFor(box), true);
+    }
   }
 
   stockBoxes.forEach((box) => {
     box.addEventListener("change", () => {
       syncQty(box);
       if (box.checked) qtyFor(box).focus();
-      if (stockBoxes.some((b) => b.checked)) stockError.hidden = true;
+      if (stockBoxes.some((b) => b.checked)) {
+        stockError.hidden = true;
+        stockError.closest("fieldset").removeAttribute("aria-invalid");
+      }
+    });
+    qtyFor(box).addEventListener("input", () => {
+      showValidity(qtyFor(box), qtyErrorFor(box), validQuantity(qtyFor(box)));
     });
   });
 
-  // Preselect stock from links such as /order.html?stock=broilers,layers
-  const preselect = new URLSearchParams(location.search).get("stock");
-  if (preselect) {
-    preselect.split(",").forEach((value) => {
-      const box = stockBoxes.find((b) => b.value === value);
-      if (box) box.checked = true;
-    });
+  // A single product can be selected in advance; a group still needs a choice.
+  const params = new URLSearchParams(location.search);
+  const requested = (params.get("stock") || "").split(",").filter(Boolean);
+  if (requested.length === 1) {
+    const box = stockBoxes.find((b) => b.value === requested[0]);
+    if (box) box.checked = true;
+  }
+  if (params.get("group") === "other-poultry" || requested.length > 1) {
+    document.getElementById("stock-group-hint").hidden = false;
+    if (!stockBoxes.some((b) => b.checked)) {
+      const firstChoices = params.get("group") === "other-poultry"
+        ? ["guinea-fowl", "turkeys", "ducks"] : requested;
+      [...firstChoices].reverse().forEach((value) => {
+        const box = stockBoxes.find((b) => b.value === value);
+        if (box) box.closest("ul").prepend(box.closest("li"));
+      });
+    }
   }
   stockBoxes.forEach(syncQty);
 
-  // Suggest the earliest realistic delivery date rather than blocking earlier ones.
+  // Local calendar dates avoid shifting the date in time zones ahead of UTC.
+  const isoDate = (d) => [d.getFullYear(), String(d.getMonth() + 1).padStart(2, "0"), String(d.getDate()).padStart(2, "0")].join("-");
+  const prettyDate = (d) => d.toLocaleDateString("en-ZW", {
+    weekday: "short", day: "numeric", month: "long", year: "numeric",
+  });
   const earliest = new Date();
   earliest.setDate(earliest.getDate() + leadDays);
-  const isoDate = (d) => d.toISOString().slice(0, 10);
-  const prettyDate = (d) =>
-    d.toLocaleDateString("en-ZW", { weekday: "short", day: "numeric", month: "long" });
   dateInput.min = isoDate(new Date());
   form.querySelector("[data-earliest]").textContent = prettyDate(earliest);
 
   const required = [
-    { input: form.querySelector("#location"), error: document.getElementById("location-error") },
-    { input: form.querySelector("#name"), error: document.getElementById("name-error") },
-    { input: form.querySelector("#phone"), error: document.getElementById("phone-error") },
+    { input: form.querySelector("#location"), error: document.getElementById("location-error"), valid: (value) => value.trim() !== "" },
+    { input: form.querySelector("#name"), error: document.getElementById("name-error"), valid: (value) => value.trim() !== "" },
+    { input: form.querySelector("#phone"), error: document.getElementById("phone-error"), valid: (value) => {
+      const digits = value.replace(/\D/g, "");
+      return /^\+?[\d\s().-]+$/.test(value.trim()) && digits.length >= 7 && digits.length <= 15;
+    } },
+    { input: dateInput, error: document.getElementById("date-error"), valid: (value) => {
+      if (!value) return !dateInput.validity.badInput;
+      const date = new Date(`${value}T12:00:00`);
+      return !Number.isNaN(date.getTime()) && isoDate(date) === value && value >= isoDate(new Date());
+    } },
   ];
 
-  required.forEach(({ input, error }) => {
+  required.forEach(({ input, error, valid }) => {
     input.addEventListener("input", () => {
-      if (input.value.trim()) {
-        input.removeAttribute("aria-invalid");
-        error.hidden = true;
-      }
+      if (input.hasAttribute("aria-invalid")) showValidity(input, error, valid(input.value));
     });
   });
 
@@ -92,37 +137,43 @@ if (form) {
     let firstInvalid = null;
 
     const hasStock = stockBoxes.some((b) => b.checked);
-    stockError.hidden = hasStock;
-    if (!hasStock) firstInvalid = stockBoxes[0];
+    showValidity(stockError.closest("fieldset"), stockError, hasStock);
+    if (!hasStock) firstInvalid = form.querySelector('input[name="stock"]');
 
-    required.forEach(({ input, error }) => {
-      const ok = input.value.trim() !== "";
-      error.hidden = ok;
-      if (ok) input.removeAttribute("aria-invalid");
-      else {
-        input.setAttribute("aria-invalid", "true");
-        firstInvalid ??= input;
-      }
+    stockBoxes.filter((b) => b.checked).forEach((box) => {
+      const input = qtyFor(box);
+      const ok = validQuantity(input);
+      showValidity(input, qtyErrorFor(box), ok);
+      if (!ok) firstInvalid ??= input;
     });
 
+    required.forEach(({ input, error, valid }) => {
+      const ok = valid(input.value);
+      showValidity(input, error, ok);
+      if (!ok) firstInvalid ??= input;
+    });
+
+    errorSummary.hidden = !firstInvalid;
     if (firstInvalid) firstInvalid.focus();
     return !firstInvalid;
   }
 
   function buildMessage() {
     const data = new FormData(form);
-    const lines = ["Hello Nyajena, I would like to order:"];
+    const lines = ["Hi Nyajena, I would like to order:"];
 
     stockBoxes
       .filter((b) => b.checked)
       .forEach((b) => {
         const qty = qtyFor(b).value.trim();
-        lines.push(`- ${b.dataset.label}${qty ? `: ${qty}` : ""}`);
+        const unit = qtyFor(b).nextElementSibling.textContent;
+        const variant = variantFor(b);
+        lines.push(`- ${b.dataset.label}: ${qty ? `${qty} ${unit}` : "quantity to discuss"}${variant ? `; ${variant.value || "type to discuss — please advise"}` : ""}`);
       });
 
     if (data.get("extras")) lines.push("- Please also quote feed, vaccines or brooding equipment");
 
-    lines.push("", `Deliver to: ${data.get("location").trim()}`);
+    lines.push("", `Town or district: ${data.get("location").trim()}`);
     const date = data.get("date");
     if (date) lines.push(`Preferred date: ${prettyDate(new Date(`${date}T12:00:00`))}`);
 
@@ -130,6 +181,7 @@ if (form) {
 
     const notes = data.get("notes").trim();
     if (notes) lines.push("", notes);
+
 
     return lines.join("\n");
   }
@@ -165,17 +217,20 @@ if (form) {
     try {
       await navigator.clipboard.writeText(orderText.value);
       copyButton.textContent = "Copied";
-      copyStatus.textContent = "Order text copied. Paste it into WhatsApp or an SMS.";
+      copyStatus.textContent = "Order copied. Paste it into WhatsApp or an SMS.";
     } catch {
       orderText.select();
-      copyButton.textContent = "Press Ctrl+C to copy";
-      copyStatus.textContent = "Order text selected. Press Ctrl+C to copy it.";
+      copyButton.textContent = "Select and copy the text below";
+      copyStatus.textContent = "Order selected. Use your device’s copy command to copy it.";
     }
     clearTimeout(copyTimer);
     copyTimer = setTimeout(() => {
       copyButton.textContent = copyLabel;
     }, 2500);
   });
+
+  // Enable submission only after the WhatsApp handler is ready.
+  form.querySelector('button[type="submit"]').disabled = false;
 }
 
 // WhatsApp shortcut -----------------------------------------------------------

@@ -1,18 +1,30 @@
 [
   {
-    "q": "How far ahead should I order?",
-    "a": "At least three weeks before you want delivery. That gives us time to confirm availability and complete vaccinations before your stock leaves the farm."
+    "q": "How do I get a price?",
+    "a": "Send your order through our order form or on WhatsApp: the stock you want, roughly how many and your town or district. We reply within one business day with a price and a delivery date."
   },
   {
-    "q": "Can you supply feed and brooding equipment with my order?",
-    "a": "Yes. We can bundle feed, vaccines and brooding kits with your stock and deliver them on the same day."
+    "q": "Is there a minimum order?",
+    "a": "It depends on the stock. Tell us roughly how many you need and we’ll tell you whether we can supply it."
+  },
+  {
+    "q": "Do you deliver, or can I collect?",
+    "a": "We deliver across Zimbabwe and quote transport with your order. You can also collect from our farm in Masvingo; message us first so your stock is ready when you arrive."
+  },
+  {
+    "q": "How far ahead should I order?",
+    "a": "At least three weeks before you want delivery. That gives us time to confirm availability and complete vaccinations. If you need stock sooner, ask us what is ready now."
+  },
+  {
+    "q": "Is my order booked as soon as I send it?",
+    "a": "Not yet. We reply with a price and delivery date, and your order is booked once you’ve agreed them with us."
+  },
+  {
+    "q": "Can you supply feed and brooding equipment too?",
+    "a": "Yes. We can supply feed, vaccines and brooding equipment with your stock. Tick the box on the order form and we’ll quote everything together."
   },
   {
     "q": "What help do I get after delivery?",
-    "a": "Our field officers and partner vets stay on call for health checks, mortality investigations and performance comparisons for the whole cycle. Day-old chick orders include WhatsApp support for the first 14 days."
-  },
-  {
-    "q": "Do you deliver outside Zimbabwe?",
-    "a": "On request. Tell us the destination and its veterinary requirements and we will arrange the permits and cross-border transport."
+    "a": "Our field officers and partner vets are on call for the whole cycle for health checks, mortality investigations, and growth and feed checks against target. Day-old chick orders also get a dedicated WhatsApp line for the first 14 days."
   }
 ]

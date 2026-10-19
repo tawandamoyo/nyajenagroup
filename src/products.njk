@@ -8,7 +8,8 @@ permalink: "{{ product.url }}"
 eleventyComputed:
   title: "{{ product.title }}"
   description: "{{ product.description }}"
-  orderStock: "{{ product.orderOptions | join(',') }}"
+  orderStock: "{{ product.orderOptions[0] if product.orderOptions.length == 1 else '' }}"
+  stockGroup: "{{ product.slug if product.orderOptions.length > 1 else '' }}"
   orderBandTitle: "Order {{ product.name | lower }}"
 ---
 <nav class="wrap crumbs" aria-label="Breadcrumb">
@@ -28,7 +29,7 @@ eleventyComputed:
       <p>{{ para }}</p>
       {%- endfor %}
       <div class="actions">
-        <a class="button button--primary" href="/order.html?stock={{ orderStock }}">Order {{ product.name | lower }}</a>
+        <a class="button button--primary" href="/order.html?{% if orderStock %}stock={{ orderStock }}{% else %}group={{ stockGroup }}{% endif %}">Order {{ product.name | lower }}</a>
         <a class="button button--ghost" href="https://wa.me/{{ site.whatsapp }}?text={{ ('Hi Nyajena, I have a question about ' + (product.name | lower) + '.') | urlencode }}" rel="noopener">
           <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Ask a question
         </a>
@@ -79,7 +80,7 @@ eleventyComputed:
 <section class="section section--tint" aria-labelledby="related-title">
   <div class="wrap">
     <header class="section__head section__head--row">
-      <h2 id="related-title">Often ordered together</h2>
+      <h2 id="related-title">Other stock</h2>
       <a class="text-link" href="/#stock">See all stock</a>
     </header>
     {%- set stockItems = products | productsBySlugs(product.related) %}

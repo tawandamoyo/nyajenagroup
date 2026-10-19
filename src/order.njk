@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 permalink: /order.html
 title: Order stock
-description: Order day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits or goats from Nyajena Agricultural Group. Send your order on WhatsApp and get a price and delivery date within one business day.
+description: Order day-old chicks, broilers, layers, guinea fowl, turkeys, ducks, rabbits or goats from Nyajena Agricultural Group in Masvingo. Send your order on WhatsApp and get a price and delivery date within one business day.
 hideFab: true
 ---
 <section class="section order-page">
@@ -10,14 +10,12 @@ hideFab: true
     <div class="order-page__intro">
       <h1>Order stock</h1>
       <p class="lede">Fill this in and we’ll open WhatsApp with your order ready to send. We reply within one business day with a price and delivery date.</p>
-      <p>Book at least {{ site.leadTimeWeeks }} weeks before you want delivery.</p>
-      <div class="order-page__alt">
-        <p>Prefer to talk?</p>
-        <a class="button button--ghost" href="tel:{{ site.phone.e164 }}">
-          <svg aria-hidden="true"><use href="#i-phone" /></svg>Call {{ site.phone.display }}
-        </a>
-      </div>
+      <p class="hint">Order at least {{ site.leadTimeWeeks }} weeks before you want delivery.</p>
     </div>
+
+    <noscript>
+      <p class="notice">To order, <a href="https://wa.me/{{ site.whatsapp }}">message us on WhatsApp</a> or <a href="tel:{{ site.phone.e164 }}">call {{ site.phone.display }}</a>.</p>
+    </noscript>
 
     <form
       class="order-form"
@@ -26,9 +24,11 @@ hideFab: true
       data-whatsapp="{{ site.whatsapp }}"
       data-lead-days="{{ site.leadTimeWeeks * 7 }}"
     >
+      <p class="field-error" id="form-error-summary" role="alert" hidden>Please check the highlighted fields before continuing.</p>
       <fieldset class="field-group" aria-describedby="stock-error">
         <legend>What do you need?</legend>
-        <p class="hint">Tick each line and add a number. A rough number is fine.</p>
+        <p class="hint" id="quantity-hint">Choose your stock and add an approximate quantity, or leave the quantity blank if you’re unsure.</p>
+        <p class="notice" id="stock-group-hint" hidden>Choose the stock you want below. None have been selected for you.</p>
         <ul class="stock-picker" role="list">
           {%- for opt in orderOptions %}
           <li class="stock-picker__row">
@@ -36,9 +36,21 @@ hideFab: true
             <label for="stock-{{ opt.value }}">{{ opt.label }}</label>
             <span class="stock-picker__qty">
               <label class="visually-hidden" for="qty-{{ opt.value }}">How many {{ opt.label | lower }}?</label>
-              <input type="text" id="qty-{{ opt.value }}" name="qty-{{ opt.value }}" inputmode="numeric" placeholder="e.g. {{ opt.example }}" disabled />
+              <input type="text" id="qty-{{ opt.value }}" name="qty-{{ opt.value }}" inputmode="numeric" placeholder="e.g. {{ opt.example }}" aria-describedby="quantity-hint qty-error-{{ opt.value }}" disabled />
               <span aria-hidden="true">{{ opt.unit }}</span>
             </span>
+            <p class="field-error stock-picker__error" id="qty-error-{{ opt.value }}" hidden>Enter a whole number above zero, or leave this blank if you’re unsure.</p>
+            {%- if opt.variants %}
+            <div class="stock-picker__details" id="details-{{ opt.value }}" hidden>
+              <label for="variant-{{ opt.value }}">{{ opt.variantLabel }}</label>
+              <select id="variant-{{ opt.value }}" name="variant-{{ opt.value }}" disabled>
+                <option value="">Not sure — please advise</option>
+                {%- for variant in opt.variants %}
+                <option value="{{ variant }}">{{ variant }}</option>
+                {%- endfor %}
+              </select>
+            </div>
+            {%- endif %}
           </li>
           {%- endfor %}
         </ul>
@@ -50,16 +62,17 @@ hideFab: true
       </fieldset>
 
       <fieldset class="field-group">
-        <legend>Delivery</legend>
+        <legend>Location and timing</legend>
         <div class="field">
           <label for="location">Town or district</label>
           <input type="text" id="location" name="location" autocomplete="address-level2" required aria-describedby="location-error" />
-          <p class="field-error" id="location-error" hidden>Tell us where to deliver so we can plan transport.</p>
+          <p class="field-error" id="location-error" hidden>Enter your town or district so we can discuss delivery options.</p>
         </div>
         <div class="field">
-          <label for="date">Preferred delivery date <span class="optional">(optional)</span></label>
-          <input type="date" id="date" name="date" aria-describedby="date-hint" />
-          <p class="hint" id="date-hint">Earliest we can usually deliver: <span data-earliest>{{ site.leadTimeWeeks }} weeks from today</span>.</p>
+          <label for="date">Preferred date <span class="optional">(optional)</span></label>
+          <input type="date" id="date" name="date" aria-describedby="date-hint date-error" />
+          <p class="hint" id="date-hint">Earliest we can usually deliver: <span data-earliest>{{ site.leadTimeWeeks }} weeks from today</span>. Need it sooner? Pick your date and we’ll tell you what’s ready.</p>
+          <p class="field-error" id="date-error" hidden>Choose today or a future date, or leave this blank.</p>
         </div>
       </fieldset>
 
@@ -72,34 +85,31 @@ hideFab: true
         </div>
         <div class="field">
           <label for="phone">Phone or WhatsApp number</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" required aria-describedby="phone-error" placeholder="07..." />
-          <p class="field-error" id="phone-error" hidden>Enter a number we can call or message you on.</p>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required aria-describedby="phone-error" placeholder="e.g. 077 123 4567" />
+          <p class="field-error" id="phone-error" hidden>Enter a phone number with 7–15 digits. Spaces and a country code are fine.</p>
         </div>
         <div class="field">
-          <label for="notes">Anything else? <span class="optional">(optional)</span></label>
-          <textarea id="notes" name="notes" rows="4" placeholder="Your housing, experience, or questions for our team"></textarea>
+          <label for="notes">Questions or preferences <span class="optional">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="A breed, age or sex you need, collection preferences, or questions about your setup"></textarea>
         </div>
       </fieldset>
 
-      <p class="privacy">We only use your details to handle this order. We share them with our partner vets only if your stock needs veterinary care.</p>
+      <p class="privacy">Nothing is sent until you tap Send in WhatsApp. We reply with a price and delivery date, and your order is booked once you’ve agreed them with us.</p>
 
-      <noscript>
-        <p class="notice">This form needs JavaScript to open WhatsApp. You can also message us on WhatsApp at {{ site.phone.display }} or call the same number.</p>
-      </noscript>
-
-      <button class="button button--primary button--block" type="submit">
-        <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Send order on WhatsApp
+      <button class="button button--primary button--block" type="submit" disabled>
+        <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Continue to WhatsApp
       </button>
+      <p class="order-page__call">Prefer to talk? <a href="tel:{{ site.phone.e164 }}">Call {{ site.phone.display }}</a>.</p>
     </form>
 
     <section class="order-sent" id="order-sent" hidden tabindex="-1" aria-labelledby="order-sent-title">
-      <h2 id="order-sent-title">Your order is ready in WhatsApp</h2>
-      <p>Press send in WhatsApp to reach us. If WhatsApp didn’t open, use one of these:</p>
+      <h2 id="order-sent-title">Your order is ready to send</h2>
+      <p>Tap Send in WhatsApp to reach us. If WhatsApp didn’t open, use the button below or copy your order.</p>
       <div class="actions">
         <a class="button button--primary" id="order-sent-link" href="https://wa.me/{{ site.whatsapp }}" rel="noopener">
           <svg aria-hidden="true"><use href="#i-whatsapp" /></svg>Open WhatsApp
         </a>
-        <button class="button button--ghost" type="button" id="order-copy">Copy order text</button>
+        <button class="button button--ghost" type="button" id="order-copy">Copy order</button>
       </div>
       <p class="visually-hidden" role="status" id="order-copy-status"></p>
       <label class="visually-hidden" for="order-text">Your order</label>

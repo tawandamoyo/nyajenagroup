@@ -2,7 +2,8 @@
   <div class="wrap site-footer__grid">
     <div class="site-footer__brand">
       <p class="site-footer__name">{{ site.name }}</p>
-      <p>Poultry and small livestock for Zimbabwean farmers, with support from booking to market. Supplying farmers since {{ site.founded }}.</p>
+      <p class="site-footer__tagline">{{ site.tagline }}</p>
+      <p>Supplying farmers since {{ site.founded }}. Contact us for current stock, prices and delivery options.</p>
     </div>
 
     <div>
@@ -18,7 +19,9 @@
       <h2 class="site-footer__heading">Company</h2>
       <ul>
         <li><a href="/about.html">About us</a></li>
+        {%- if testimonials.length %}
         <li><a href="/testimonials.html">Farmer stories</a></li>
+        {%- endif %}
         <li><a href="/#faq">Questions</a></li>
         <li><a href="/order.html">Order stock</a></li>
       </ul>
